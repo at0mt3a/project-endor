@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: purple;
+}
+
+.about-left {
+  background-color: blue;
+  color: white;
+  flex-grow: 2;
+}
+
+.about-right {
+  background-color: yellow;
+  color: black;
+  flex-grow: 5;
+}
+
+.spotlight {
+}
+
+.form {
+}
