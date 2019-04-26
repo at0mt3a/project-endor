@@ -27,20 +27,24 @@ class LandingPage extends Component {
   }
 
   renderItems() {
-    return this.state.allItems.map(item => {
-      <div className="item-display">item #{item.id}</div>;
+    return this.state.allItems.map((item, index) => {
+      return (
+        <div key={index} styleName="item">
+          item #{item.id}, {item.category} {item.name}
+        </div>
+      );
     });
   }
 
   render() {
-    console.log(this.state.allItems);
+    console.log("this.state.allItems : ", this.state.allItems);
     if (!this.state.allItems.length) {
       return <div>No Items to display on Landing</div>;
     } else
       return (
-        <div>
-          <div>this is our landing page</div>
-          <div>{this.renderItems()}</div>
+        <div styleName="container">
+          <div styleName="title">this is our landing page</div>
+          <div styleName="shelf">{this.renderItems()}</div>
         </div>
       );
   }
