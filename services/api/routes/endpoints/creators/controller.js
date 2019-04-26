@@ -6,8 +6,6 @@ export default class AuthController {
     router.get("/:id", wrapAsyncFunc(this.creatorSpotlight));
     router.get("/", wrapAsyncFunc(this.creatorsList));
     router.put("/:id", wrapAsyncFunc(this.updateCreator));
-    router.post("/funny/:id", wrapAsyncFunc(this.fakeFunc));
-    router.delete("/:id/comments", wrapAsyncFunc(this.fakeFunctionTwo));
   }
 
   async updateCreator(req, res) {

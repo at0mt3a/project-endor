@@ -72,44 +72,6 @@ class AboutUs extends Component {
     console.log("you clicked on ", userHandle);
   };
 
-  /*
-  renderSpotlight = () => {
-    const { creator } = this.state;
-    if (creator && creator.firstName) {
-      return (
-        <div>
-          <div>
-            <div>{creator.firstName}</div>
-            <div>{creator.email}</div>
-          </div>
-          <form
-            onSubmit={event =>
-              this.submitCreatorUpdate(event, creator.userHandle)
-            }
-          >
-            <div>
-              <input
-                type="text"
-                value={creator.firstName}
-                name="firstname"
-                placeholder="First Name"
-                onChange={this.updateCreator}
-              />
-            </div>
-            <input
-              type="submit"
-              value="Submit"
-              onClick={this.submitCreatorUpdate}
-            />
-          </form>
-        </div>
-      );
-    }
-    return null;
-  };
-
-  */
-
   render() {
     return (
       <div styleName="container">
