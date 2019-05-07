@@ -10,7 +10,6 @@ export default class ItemController {
   async createNewItem(req, res) {
     console.log("hello");
     const { item } = req.body;
-    //call BL for response
     const { results } = await createItem(item);
     res.send({ results });
   }

@@ -1,17 +1,27 @@
-import { ErrorWithSatus } from "../../utils/errors.js";
-import { dummyFunction } from "../repositories/items";
+import { StatusError } from "../../utils/errors.js";
+import { collectAllItems } from "../repositories/items";
+
+let loggedIn = true;
 
 export async function createItem(item) {
   console.log("trying to create New Item", item);
   if (!item) {
-    throw new ErrorWithSatus({ msg: "Please Provide an item", status: 400 });
+    throw new StatusError({ msg: "Please Provide an item", status: 400 });
   }
   //call the repo
 }
 
 export async function getAllItems() {
   console.log("fetching items from database");
-  const repoResults = await dummyFunction();
-  console.log("Here are the repo results:", repoResults);
-  return repoResults;
+  if (loggedIn) {
+    try {
+      const results = await collectAllItems();
+      console.log("Here are the repo results:", results);
+      return results;
+    } catch (err) {
+      throw new StatusError({ msg: "DB error", status: 500 });
+    }
+  } else {
+    throw new StatusError({ msg: "User not logged in", status: 400 });
+  }
 }

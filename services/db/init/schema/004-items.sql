@@ -5,7 +5,7 @@ create table if not exists items
 (
     item_id uuid primary key default gen_random_uuid(),
     item_name text not null,
-  	price integer not null,
+  	price text not null,
   	category text not null,
     seller text not null,
     release_date date not null

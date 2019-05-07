@@ -3,13 +3,16 @@ import CSSModules from "react-css-modules";
 import * as axiosWrapper from "../../../utilities/axios/wrapper";
 import css from "./index.css";
 import { protectedRoute } from "../../../process/users/auth";
+import ItemDisplay from "../../components/item-display/index.js";
 
 class LandingPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false,
-      allItems: []
+      allItems: [],
+      itemDisplay: true,
+      updatedItem: {}
     };
   }
 
@@ -26,11 +29,38 @@ class LandingPage extends Component {
       });
   }
 
+  renderItemDisplay = () => {
+    switch (this.state.itemDisplay) {
+      case true:
+        return (
+          <div>
+            <ItemDisplay currentItem={this.state.itemDisplay} />
+          </div>
+        );
+      default:
+        return <div> i'll bite yer legs off</div>;
+    }
+  };
+
+  updateItemDisplay = event => {
+    event.preventDefault();
+    this.setState({
+      itemDisplay: event.target.value
+    });
+    console.log(this.state.itemDisplay);
+  };
+
   renderItems() {
     return this.state.allItems.map((item, index) => {
       return (
-        <div key={index} styleName="item">
-          item #{item.id}, {item.category} {item.name}
+        <div
+          key={index}
+          styleName="item"
+          type="button"
+          value={this.state.allItems[index].itemName}
+          onClick={this.updateItemDisplay}
+        >
+          "{item.itemName}", {item.category}, price: {item.price} ingots
         </div>
       );
     });
@@ -45,6 +75,7 @@ class LandingPage extends Component {
         <div styleName="container">
           <div styleName="title">this is our landing page</div>
           <div styleName="shelf">{this.renderItems()}</div>
+          <div>{this.renderItemDisplay()}</div>
         </div>
       );
   }
