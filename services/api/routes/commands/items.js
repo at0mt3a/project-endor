@@ -1,5 +1,5 @@
 import { StatusError } from "../../utils/errors.js";
-import { collectAllItems } from "../repositories/items";
+import { collectAllItems, collectItem } from "../repositories/items";
 
 let loggedIn = true;
 
@@ -16,6 +16,21 @@ export async function getAllItems() {
   if (loggedIn) {
     try {
       const results = await collectAllItems();
+      console.log("Here are the repo results:", results);
+      return results;
+    } catch (err) {
+      throw new StatusError({ msg: "DB error", status: 500 });
+    }
+  } else {
+    throw new StatusError({ msg: "User not logged in", status: 400 });
+  }
+}
+
+export async function getItem(parameter) {
+  console.log("fetching item from database");
+  if (loggedIn) {
+    try {
+      const results = await collectItem(parameter);
       console.log("Here are the repo results:", results);
       return results;
     } catch (err) {

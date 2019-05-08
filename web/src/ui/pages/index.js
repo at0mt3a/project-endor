@@ -12,6 +12,7 @@ import Home from "./homepage/";
 import Login from "./login/";
 import SignOut from "./sign-out";
 import AboutUs from "./about-us";
+import Item from "./item";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path="/landing" component={Landing} />
             <Route exact path="/sign-out" component={SignOut} />
             <Route exact path="/about-us" component={AboutUs} />
+            <Route exact path="/items/:id" component={Item} />
           </Switch>
         </div>
         <div styleName="footer-container">

@@ -14,3 +14,8 @@ export async function collectAllItems() {
   const query = sql`select * from items;`;
   return await PGWrapper.sqlAndMap(query, itemDTOMapper);
 }
+
+export async function collectItem(parameter) {
+  const query = sql`select * from items where item_id = ${parameter};`;
+  return await PGWrapper.sqlAndMap(query, itemDTOMapper);
+}

@@ -10,11 +10,41 @@ class ItemDisplay extends Component {
   };
 
   render() {
+    /*
+    const { creator, updatedCreator, updateCreator } = this.props;
+    if (creator && creator.firstName) {
+      return (
+        <div>
+          <form
+            onSubmit={event =>
+              this.props.submitCreatorUpdate(event, creator.userHandle)
+            }
+          >
+            <div>
+              <input
+                type="text"
+                value={updatedCreator.firstName}
+                name="firstname"
+                placeholder="First Name"
+                onChange={updateCreator}
+              />
+            </div>
+            <input
+              type="submit"
+              value="Submit"
+              onClick={this.props.submitCreatorUpdate}
+            />
+          </form>
+        </div>
+      );
+    }
+    return null;
+    */
     return (
       <div>
         <div styleName="item-display-container">
           waaaaaah, it's a "{this.renderCurrentItem()}"! edit the "
-          {this.renderCurrentItem()} here.
+          {this.renderCurrentItem()}" here.
         </div>
       </div>
     );

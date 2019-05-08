@@ -7,6 +7,7 @@ create table if not exists items
     item_name text not null,
   	price text not null,
   	category text not null,
+    item_description text,
     seller text not null,
     release_date date not null
 

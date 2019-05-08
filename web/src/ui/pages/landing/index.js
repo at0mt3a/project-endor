@@ -4,6 +4,7 @@ import * as axiosWrapper from "../../../utilities/axios/wrapper";
 import css from "./index.css";
 import { protectedRoute } from "../../../process/users/auth";
 import ItemDisplay from "../../components/item-display/index.js";
+import { Route, Link } from "react-router-dom";
 
 class LandingPage extends Component {
   constructor(props) {
@@ -56,11 +57,13 @@ class LandingPage extends Component {
         <div
           key={index}
           styleName="item"
-          type="button"
           value={this.state.allItems[index].itemName}
           onClick={this.updateItemDisplay}
         >
-          "{item.itemName}", {item.category}, price: {item.price} ingots
+          <Link to={`/items/${this.state.allItems[index].itemId}`}>
+            "{item.itemName}"
+          </Link>
+          , {item.category}, price: {item.price} ingots
         </div>
       );
     });
