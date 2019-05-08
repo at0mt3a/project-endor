@@ -11,9 +11,9 @@ class LandingPage extends Component {
     super(props);
     this.state = {
       error: false,
-      allItems: [],
-      itemDisplay: true,
-      updatedItem: {}
+      allItems: []
+      // itemDisplay: true,
+      // updatedItem: {}
     };
   }
 
@@ -30,26 +30,26 @@ class LandingPage extends Component {
       });
   }
 
-  renderItemDisplay = () => {
-    switch (this.state.itemDisplay) {
-      case true:
-        return (
-          <div>
-            <ItemDisplay currentItem={this.state.itemDisplay} />
-          </div>
-        );
-      default:
-        return <div> i'll bite yer legs off</div>;
-    }
-  };
+  // renderItemDisplay = () => {
+  //   switch (this.state.itemDisplay) {
+  //     case true:
+  //       return (
+  //         <div>
+  //           <ItemDisplay currentItem={this.state.itemDisplay} />
+  //         </div>
+  //       );
+  //     default:
+  //       return <div> i'll bite yer legs off</div>;
+  //   }
+  // };
 
-  updateItemDisplay = event => {
-    event.preventDefault();
-    this.setState({
-      itemDisplay: event.target.value
-    });
-    console.log(this.state.itemDisplay);
-  };
+  // updateItemDisplay = event => {
+  //   event.preventDefault();
+  //   this.setState({
+  //     itemDisplay: event.target.value
+  //   });
+  //   console.log(this.state.itemDisplay);
+  // };
 
   renderItems() {
     return this.state.allItems.map((item, index) => {
@@ -58,7 +58,7 @@ class LandingPage extends Component {
           key={index}
           styleName="item"
           value={this.state.allItems[index].itemName}
-          onClick={this.updateItemDisplay}
+          //         onClick={this.updateItemDisplay}
         >
           <Link to={`/items/${this.state.allItems[index].itemId}`}>
             "{item.itemName}"
@@ -71,14 +71,14 @@ class LandingPage extends Component {
 
   render() {
     console.log("this.state.allItems : ", this.state.allItems);
-    if (!this.state.allItems.length) {
+    if (!this.state.allItems) {
       return <div>No Items to display on Landing</div>;
     } else
       return (
         <div styleName="container">
           <div styleName="title">this is our landing page</div>
           <div styleName="shelf">{this.renderItems()}</div>
-          <div>{this.renderItemDisplay()}</div>
+          {/*<div>{this.renderItemDisplay()}</div>//*/}
         </div>
       );
   }

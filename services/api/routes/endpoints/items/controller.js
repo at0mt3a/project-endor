@@ -22,7 +22,6 @@ export default class ItemController {
   }
 
   async fetchItem(req, res) {
-    console.log(req.params.id);
     const item = await getItem(req.params.id);
     res.send({ item });
   }

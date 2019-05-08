@@ -6,6 +6,7 @@ const itemDTOMapper = row => ({
   itemName: row.item_name,
   price: row.price,
   category: row.category,
+  description: row.item_description,
   seller: row.seller,
   releaseDate: row.release_date
 });
@@ -17,5 +18,6 @@ export async function collectAllItems() {
 
 export async function collectItem(parameter) {
   const query = sql`select * from items where item_id = ${parameter};`;
-  return await PGWrapper.sqlAndMap(query, itemDTOMapper);
+  const results = await PGWrapper.sqlAndMap(query, itemDTOMapper);
+  return results[0];
 }

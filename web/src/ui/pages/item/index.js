@@ -35,7 +35,13 @@ class Item extends Component {
     return (
       <div styleName="container">
         <div styleName="title">This is our Item page</div>
-        <div>item: {this.props.match.params.id} </div>
+        <div styleName="item-container">
+          <div> - {item.itemName} - </div>
+          <div>Category: {item.category}</div>
+          <div>Price: {item.price} ingots</div>
+          <div>Description: {item.description}</div>
+          <div>Seller: {item.seller}</div>
+        </div>
       </div>
     );
   }
