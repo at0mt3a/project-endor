@@ -10,6 +10,7 @@ create table if not exists users
   	last_name text not null,
   	suffix text,
     email text not null,
+    user_type text not null,
     joined_date timestamp
 );
 grant select, insert, update, delete on table users to project_app;

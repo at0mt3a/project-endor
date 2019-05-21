@@ -9,6 +9,7 @@ const userMapper = row => ({
   lastName: row.last_name,
   suffix: row.suffix,
   email: row.email,
+  userType: row.user_type,
   joinedDate: row.joined_date
 });
 

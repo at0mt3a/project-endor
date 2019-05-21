@@ -1,0 +1,28 @@
+.profile-container {
+  background-color: red;
+  display: flex;
+  min-height: 70vh;
+  padding: 15px;
+}
+
+.img-container {
+  background-color: blue;
+  flex-grow: 2;
+}
+
+.inner-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
+}
+
+.user-info {
+  background-color: black;
+  color: yellow;
+  flex-grow: 4;
+}
+
+.link-cont {
+  flex-grow: 1;
+}

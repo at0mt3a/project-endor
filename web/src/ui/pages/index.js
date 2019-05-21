@@ -13,6 +13,8 @@ import Login from "./login/";
 import SignOut from "./sign-out";
 import AboutUs from "./about-us";
 import Item from "./item";
+import Profile from "./profile";
+import OrderHistory from "./order-history";
 
 class App extends Component {
   render() {
@@ -29,6 +31,8 @@ class App extends Component {
             <Route exact path="/sign-out" component={SignOut} />
             <Route exact path="/about-us" component={AboutUs} />
             <Route exact path="/items/:id" component={Item} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/order-history" component={OrderHistory} />
           </Switch>
         </div>
         <div styleName="footer-container">
