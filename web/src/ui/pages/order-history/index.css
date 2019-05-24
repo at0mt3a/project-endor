@@ -13,6 +13,8 @@
   flex-grow: 5;
   padding: 10px;
   overflow: auto;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .single-order {
@@ -21,4 +23,8 @@
   flex-grow: 4;
   margin: 5px;
   border-radius: 5px;
+  align-items: center;
+}
+
+.item-list {
 }

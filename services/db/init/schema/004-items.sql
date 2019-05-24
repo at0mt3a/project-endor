@@ -9,7 +9,7 @@ create table if not exists items
   	category text not null,
     item_description text,
     seller text not null,
-    release_date date not null
+    release_date timestamptz
 
 );
 

@@ -10,8 +10,7 @@ class OrderHistory extends Component {
     super(props);
     this.state = {
       user: null,
-      orders: [],
-      groupedOrders: []
+      orders: []
     };
   }
 
@@ -24,7 +23,8 @@ class OrderHistory extends Component {
         axiosWrapper
           .get(`/orders/${userHandle}`)
           .then(response => {
-            this.setState({ orders: response.data.orders });
+            this.setState({ orders: response.data.orderHistory });
+            console.log("order history HERE ----->", response);
             console.log("current page state: ", this.state);
           })
           .catch(err => {
@@ -32,22 +32,33 @@ class OrderHistory extends Component {
           });
       })
       .catch(err => {
-        console.log("Error fetching ID token");
-        console.log("new user state: ", this.state.user);
-        console.log("current order state: ", this.state.orders);
+        console.log("ERROR fetching ID token");
+        console.log("user state: ", this.state.user);
+        console.log("order state: ", this.state.orders);
       });
   }
 
-  groupOrdersByID = () => {
-    console.log(...this.state.orders);
-  };
-
   render() {
-    this.groupOrdersByID();
     return (
       <div styleName="container">
-        Current UserName's Order History
-        <div styleName="order-list" />
+        User's Order History
+        <div styleName="order-list">
+          {this.state.orders.map((order, index) => (
+            <div styleName="single-order" key={index}>
+              <div>Order ID: {order.orderId}</div>
+              <div>Order Date: {order.orderDate[0]}</div>
+              <br />
+              <div styleName="item-list">
+                {order.items.map((item, index) => (
+                  <div key={index}>
+                    <Link to={`/items/${item.id}`}>{`"${item.name}" `}</Link>
+                    {`- Price: $${item.price}, Quantity: ${item.quantity}`}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }

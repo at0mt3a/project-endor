@@ -8,7 +8,7 @@ export default class OrderController {
   }
 
   async fetchOrderHistory(req, res) {
-    const orders = await getOrderHistory(req.params.id);
-    res.send({ orders });
+    const orderHistory = await getOrderHistory(req.params.id);
+    res.send({ orderHistory });
   }
 }
