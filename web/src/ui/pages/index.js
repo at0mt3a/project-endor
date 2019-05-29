@@ -17,11 +17,31 @@ import Profile from "./profile";
 import OrderHistory from "./order-history";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cart: 0
+    };
+  }
+
+  //create method to update state of numOfItemsInCart
+  //alter local state
+  //call backend to update table
+  // success - update state
+  // failure - sold out
+
+  addItemToCart = (event, itemId) => {
+    event.preventDefault();
+    this.setState({
+      cart: this.state.cart + 1
+    });
+  };
+
   render() {
     return (
       <div styleName="App">
         <div styleName="header-container">
-          <Header />
+          <Header cart={this.state.cart} />
         </div>
         <div styleName="content-container">
           <Switch>
@@ -30,7 +50,17 @@ class App extends Component {
             <Route exact path="/landing" component={Landing} />
             <Route exact path="/sign-out" component={SignOut} />
             <Route exact path="/about-us" component={AboutUs} />
-            <Route exact path="/items/:id" component={Item} />
+            <Route
+              exact
+              path="/items/:id"
+              render={({ match }) => (
+                <Item
+                  addItemToCart={this.addItemToCart}
+                  match={match}
+                  cart={this.state.cart}
+                />
+              )}
+            />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/order-history" component={OrderHistory} />
           </Switch>

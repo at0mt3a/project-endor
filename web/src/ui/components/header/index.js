@@ -13,11 +13,28 @@ class Header extends Component {
     const { active } = this.props.user;
     const rightSide = active ? <UserLinks /> : <DefaultLinks />;
 
+    const leftSide = active ? (
+      <Link to="/landing">
+        <div styleName="logo">Logo</div>
+      </Link>
+    ) : (
+      <Link to="/">
+        <div styleName="logo">Logo</div>
+      </Link>
+    );
+
+    const cart = active ? (
+      <Link to="/cart">
+        <div styleName="cart">{this.props.cart} items in cart</div>
+      </Link>
+    ) : (
+      <div />
+    );
+
     return (
       <div styleName="container">
-        <Link to="/">
-          <div styleName="logo">Logo</div>
-        </Link>
+        <div>{leftSide}</div>
+        <div>{cart}</div>
         <div styleName="active-links">{rightSide}</div>
       </div>
     );

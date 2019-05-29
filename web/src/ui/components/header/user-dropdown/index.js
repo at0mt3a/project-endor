@@ -27,11 +27,9 @@ class HeaderNavLinks extends Component {
   render() {
     const { active } = this.props.user;
     const trigger = (
-      <span>
-        <Image avatar src={`${active.lastName}`}>
-          <Icon circular disabled name="user" size="large" />
-        </Image>
-      </span>
+      <Image avatar src={`${active.lastName}`}>
+        <Icon circular disabled name="user" size="large" />
+      </Image>
     );
 
     return [

@@ -52,7 +52,7 @@ class LandingPage extends Component {
     } else
       return (
         <div styleName="container">
-          <div styleName="title">this is our landing page</div>
+          <div styleName="title">View ye here our goods for sale!</div>
           <div styleName="shelf">{this.renderItems()}</div>
         </div>
       );

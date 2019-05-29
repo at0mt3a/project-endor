@@ -6,7 +6,7 @@ import css from "./index.css";
 
 class Footer extends Component {
   render() {
-    return <footer styleName="footer">Here's our footer</footer>;
+    return <footer styleName="footer">smells like feet down here...</footer>;
   }
 }
 

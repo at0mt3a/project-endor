@@ -24,7 +24,7 @@ class OrderHistory extends Component {
           .get(`/orders/${userHandle}`)
           .then(response => {
             this.setState({ orders: response.data.orderHistory });
-            console.log("order history HERE ----->", response);
+            console.log("order history state HERE ----->", this.state.orders);
             console.log("current page state: ", this.state);
           })
           .catch(err => {

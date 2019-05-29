@@ -7,23 +7,28 @@
 }
 
 .title {
-  align-self: flex-start;
+  align-self: center;
   flex-grow: 1;
   color: red;
   margin: 10px;
 }
 
 .shelf {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
   flex-grow: 2;
   display: flex;
   flex-wrap: wrap;
+  overflow: scroll;
+  justify-content: space-between;
 }
 
 .item {
-  height: 100px;
+  height: 80px;
   width: 100px;
   background-color: gold;
-  margin: 3px;
+  margin: 8px;
   padding: 3px;
   border-radius: 3px;
 }
