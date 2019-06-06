@@ -43,7 +43,9 @@ class Cart extends Component {
     event.preventDefault();
     axiosWrapper
       .post("/cart/place-order", { currentCartUser })
-      .then(response => {});
+      .then(response => {
+        this.setState;
+      });
   };
 
   // addItemToCart = (itemId, quantity) => {
