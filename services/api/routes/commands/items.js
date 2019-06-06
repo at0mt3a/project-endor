@@ -16,7 +16,6 @@ export async function getAllItems() {
   if (loggedIn) {
     try {
       const results = await collectAllItems();
-      console.log("Here are the repo results:", results);
       return results;
     } catch (err) {
       throw new StatusError({ msg: "DB error", status: 500 });

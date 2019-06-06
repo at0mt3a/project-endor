@@ -15,7 +15,7 @@ class Header extends Component {
 
     const leftSide = active ? (
       <Link to="/landing">
-        <div styleName="logo">Logo</div>
+        <div styleName="logo">Home</div>
       </Link>
     ) : (
       <Link to="/">

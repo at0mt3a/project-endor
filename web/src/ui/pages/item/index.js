@@ -10,11 +10,21 @@ class Item extends Component {
     this.state = {
       item: {
         images: []
-      }
+      },
+      quantity: 1
     };
   }
 
-  addThisItem;
+  addItemToCart = event => {
+    event.preventDefault();
+    this.props.updateCart(this.state.item.itemId, this.state.quantity);
+    console.log("ITEM PAGE STATE:", this.state);
+  };
+
+  updateQuantity = event => {
+    event.preventDefault();
+    this.setState({ quantity: parseInt(event.target.value) });
+  };
 
   componentDidMount() {
     console.log("from props", this.props);
@@ -31,7 +41,7 @@ class Item extends Component {
 
   render() {
     console.log("here be the props", this.props);
-    console.log("current item state:", this.state.item);
+    console.log("current state:", this.state);
     const { item } = this.state;
     if (!item) {
       return <div>loading...</div>;
@@ -58,7 +68,12 @@ class Item extends Component {
           <div>Price: {item.price} ingots</div>
           <div>Description: {item.description}</div>
           <div>Seller: {item.seller}</div>
-          <button type="button" onClick={this.props.addItemToCart}>
+          <input
+            type="number"
+            value={this.state.quantity}
+            onChange={this.updateQuantity}
+          />
+          <button type="button" onClick={this.addItemToCart}>
             Add Item to Cart
           </button>
         </div>

@@ -1,0 +1,30 @@
+.container {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  padding: 15px;
+}
+
+.cart-list {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 5;
+  padding: 10px;
+  overflow: auto;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.single-item {
+  background-color: black;
+  color: yellow;
+  flex-grow: 4;
+  margin: 5px;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.cart {
+}

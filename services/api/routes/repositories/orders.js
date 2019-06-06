@@ -10,9 +10,7 @@ const orderMapper = row => {
 
   results.items = row.items.map((id, index) => ({
     name: row.names[index],
-    quantity: row.quantities[index],
-    price: row.prices[index],
-    id
+    quantity: row.quantities[index]
   }));
 
   return results;
