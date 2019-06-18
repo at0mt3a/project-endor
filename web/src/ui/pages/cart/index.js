@@ -12,7 +12,8 @@ class Cart extends Component {
       user: null,
       cart: {
         items: []
-      }
+      },
+      orderPlaced: false
     };
   }
 
@@ -39,37 +40,30 @@ class Cart extends Component {
       });
   }
 
-  placeOrderFromCart = currentCartUser => {
+  placeOrderFromCart = event => {
     event.preventDefault();
-    axiosWrapper
-      .post("/cart/place-order", { currentCartUser })
-      .then(response => {
-        this.setState;
-      });
+    axiosWrapper.post("/cart/place-order", {}).then(response => {
+      console.log("ORDER HAS BEEN PLACED", response);
+      this.setState({ orderPlaced: true });
+    });
   };
 
-  // addItemToCart = (itemId, quantity) => {
-  //   event.preventDefault();
-  //   axiosWrapper
-  //     .post("/cart/add", { items: [{ id: itemId, quantity }] })
-  //     .then(res => {
-  //       console.log("response from the backend", res);
-  //       this.setState({
-  //         cart: parseInt(this.state.cart) + quantity
-  //       });
-  //     })
-  //     .catch(err => {
-  //       console.log(`Something bad happened... handle it ${err}`);
-  //       console.log(`BASE STATE`, this.state);
-  //     });
-  // };
-
   render() {
+    const { cart, orderPlaced } = this.state;
+
+    if (orderPlaced) {
+      return <div>order has been placed</div>;
+    }
+
+    if (!cart) {
+      return <div>User's cart is empty</div>;
+    }
+
     return (
       <div styleName="container">
         User's Current Cart
         <div styleName="cart">
-          {this.state.cart.items.map((item, index) => (
+          {cart.items.map((item, index) => (
             <div styleName="single-item" key={index}>
               <div>Item: {item.name}</div>
               <div>Quantity: {item.quantity}</div>

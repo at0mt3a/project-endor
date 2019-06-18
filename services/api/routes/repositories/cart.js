@@ -53,19 +53,36 @@ export async function postItemsToCart(userHandle, items) {
 }
 
 export async function placeOrderFromCart(parameter) {
-  const statement = sql`
-    BEGIN;
+  console.log("About to order", parameter);
+  let placeOrder = sql`
       with new_order as (
         insert into orders (purchaser_id) values (${parameter}) returning *
       )
       insert into order_items (
         select new_order.order_id as order_id, c.item_id, c.quantity
         from carts c
-        left join new_order.purchaser_id = c.user_id
+        left join new_order on new_order.purchaser_id = c.user_id
         where c.user_id = ${parameter} and c.active = true
       );
-      update carts set active = false where user_id = ${parameter} and active = true;
-    COMMIT;
     `;
-  return await PGWrapper.sql(statement);
+
+  let emptyCart = sql`update carts set active = false 
+    where user_id = ${parameter} and active = true;`;
+
+  return await PGWrapper.sqlTransaction(placeOrder, emptyCart);
 }
+
+// '17832b68-e91e-45f4-9a92-042c69b1b9c5'
+// begin;
+// with new_order as (
+//   insert into orders (purchaser_id) values ('17832b68-e91e-45f4-9a92-042c69b1b9c5') returning *
+// )
+// insert into order_items (
+//   select new_order.order_id as order_id, c.item_id, c.quantity
+//   from carts c
+//   left join new_order on new_order.purchaser_id = c.user_id
+//   where c.user_id = '17832b68-e91e-45f4-9a92-042c69b1b9c5' and c.active = true
+// );
+// update carts set active = false
+//     where user_id = '17832b68-e91e-45f4-9a92-042c69b1b9c5' and active = true;
+// commit;

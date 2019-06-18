@@ -14,7 +14,7 @@ export default class CartController {
     router.get("/quantity/:id", wrapAsyncFunc(this.fetchCartQuantity));
     router.get("/contents/:id", wrapAsyncFunc(this.fetchCartContents));
     router.post("/add", wrapAsyncFunc(this.addToCart));
-    router.post("/place-order", wrapAsyncFunc(this.addOrderFromCart));
+    router.post("/place-order", wrapAsyncFunc(this.placeOrder));
   }
 
   async fetchCartQuantity(req, res) {
