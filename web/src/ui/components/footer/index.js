@@ -6,7 +6,11 @@ import css from "./index.css";
 
 class Footer extends Component {
   render() {
-    return <footer styleName="footer">smells like feet down here...</footer>;
+    return (
+      <footer styleName="footer">
+        <div>smells like feet down here...</div>
+      </footer>
+    );
   }
 }
 
