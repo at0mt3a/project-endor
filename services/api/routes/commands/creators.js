@@ -1,12 +1,18 @@
-import { 
+import {
   fetchCreatorsDetails,
-  fetchCreatorInfo
- } from '../repositories/creators'
+  fetchCreatorInfo,
+  reviseCreator
+} from "../repositories/creators";
 
 export async function getCreatorInfo(userHandle) {
-  return fetchCreatorInfo(userHandle)
+  return fetchCreatorInfo(userHandle);
 }
 
 export async function getCreatorsList() {
-  return fetchCreatorsDetails()
+  return fetchCreatorsDetails();
+}
+
+export async function getRevisedCreator(revisedName, userHandle) {
+  console.log("COMMAND FUNC", revisedName, userHandle);
+  return reviseCreator(revisedName, userHandle);
 }

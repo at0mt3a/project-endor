@@ -1,7 +1,6 @@
 import sql from "sql-template-strings";
 import PGWrapper from "../../utils/pg-wrapper";
 
-
 const userDTO = row => ({
   userHandle: row.user_handle,
   username: row.username,
@@ -10,14 +9,14 @@ const userDTO = row => ({
   lastName: row.last_name,
   suffix: row.suffix,
   email: row.email,
-  joined: row.joined_date  
-})
+  joined: row.joined_date
+});
 
 const userListDTO = row => ({
   userHandle: row.user_handle,
   firstName: row.first_name,
-  lastName: row.last_name,
-})
+  lastName: row.last_name
+});
 
 export async function fetchCreatorInfo(userHandle) {
   const query = sql`select * from users where user_handle = ${userHandle};`;
@@ -33,4 +32,15 @@ export async function fetchCreatorsDetails() {
   const creators = await PGWrapper.sqlAndMap(query, userListDTO);
 
   return creators;
+}
+
+export async function reviseCreator(revisedName, userHandle) {
+  const query = sql`
+  update users
+  set first_name = ${revisedName}
+  where user_handle = ${userHandle}
+  returning user_handle, first_name, last_name;`;
+  const revisedCreator = await PGWrapper.sqlAndMap(query, userListDTO);
+  console.log("REPO FUNC", revisedCreator);
+  return revisedCreator;
 }

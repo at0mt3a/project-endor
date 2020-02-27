@@ -1,4 +1,8 @@
-import { getCreatorInfo, getCreatorsList } from "../../commands/creators";
+import {
+  getCreatorInfo,
+  getCreatorsList,
+  getRevisedCreator
+} from "../../commands/creators";
 import { wrapAsyncFunc } from "../../../utils/wrap-async-route";
 
 export default class AuthController {
@@ -10,13 +14,14 @@ export default class AuthController {
 
   async updateCreator(req, res) {
     const { id } = req.params;
-    const { creator } = req.body;
+    const revisedName = req.body.creator.firstName;
     console.log(
       "I am responding to a put request on /creators/:id",
-      creator,
+      req.body,
       id
     );
-    res.send({ creator });
+    const revisedCreator = await getRevisedCreator(revisedName, id);
+    res.send({ revisedCreator });
   }
 
   async creatorSpotlight(req, res) {

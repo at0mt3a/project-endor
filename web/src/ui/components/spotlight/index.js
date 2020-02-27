@@ -30,7 +30,7 @@ class Spotlight extends Component {
             <input
               type="submit"
               value="Submit"
-              onClick={this.props.submitCreatorUpdate}
+              //onClick={this.props.submitCreatorUpdate}
             />
           </form>
         </div>
