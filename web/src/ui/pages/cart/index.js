@@ -28,6 +28,8 @@ class Cart extends Component {
           .then(response => {
             this.setState({ cart: response.data.cartContents[0] });
             console.log("cart state HERE ----->", this.state.cart);
+            console.log("user state: ", this.state.user);
+            console.log("order state: ", this.state.orders);
           })
           .catch(err => {
             console.log("Error fetching cart");
@@ -45,6 +47,13 @@ class Cart extends Component {
     axiosWrapper.post("/cart/place-order", {}).then(response => {
       console.log("ORDER HAS BEEN PLACED", response);
       this.setState({ orderPlaced: true });
+    });
+  };
+
+  deleteCartItem = (event, userHandle, item) => {
+    event.preventDefault();
+    axiosWrapper.del(`/cart/${userHandle}/${item}`, {}).then(response => {
+      console.log("ITEM DELETED", response);
     });
   };
 
@@ -67,6 +76,18 @@ class Cart extends Component {
             <div styleName="single-item" key={index}>
               <div>Item: {item.name}</div>
               <div>Quantity: {item.quantity}</div>
+              <button
+                type="button"
+                onClick={event =>
+                  this.deleteCartItem(
+                    event,
+                    this.state.user.userHandle,
+                    item.name
+                  )
+                }
+              >
+                X
+              </button>
             </div>
           ))}
         </div>

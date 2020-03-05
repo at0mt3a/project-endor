@@ -3,6 +3,7 @@ import { fetchCartContents } from "../repositories/cart";
 import { fetchCartQuantity } from "../repositories/cart";
 import { postItemsToCart } from "../repositories/cart";
 import { placeOrderFromCart } from "../repositories/cart";
+import { deleteItemFromCart } from "../repositories/cart";
 
 let loggedIn = true;
 
@@ -53,4 +54,10 @@ export async function addOrderFromCart(parameter) {
   } else {
     throw new StatusError({ msg: "User not logged in", status: 400 });
   }
+}
+
+export async function deleteCartItem(userHandle, item) {
+  const results = await deleteItemFromCart(userHandle, item);
+  console.log("COMMAND FUNC: deleting ", item, " from ", userHandle, "'s cart");
+  return results;
 }
