@@ -35,6 +35,7 @@ export async function fetchCartContents(parameter) {
     array_agg(quantity) as quantities from carts 
     where user_id = ${parameter} and active = true group by user_id;`;
   const results = await PGWrapper.sqlAndMap(query, cartContentsMapper);
+
   return results;
 }
 
@@ -73,11 +74,7 @@ export async function placeOrderFromCart(parameter) {
 }
 
 export async function deleteItemFromCart(userHandle, item) {
-  console.log("about to delete", item, "from", user, "'s cart");
-  const statement = sql`delete from carts where item_id = ${item} and user_id = ${userHandle} and active = true;`;
+  console.log("about to delete", item, "from", userHandle, "'s cart");
+  const statement = sql`delete from carts where item_id = ${item} and user_id = ${userHandle} and active = true returning item_id;`;
   return await PGWrapper.sqlTransaction(statement);
 }
-
-
-
-

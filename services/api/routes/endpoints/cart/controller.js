@@ -16,7 +16,7 @@ export default class CartController {
     router.get("/contents/:id", wrapAsyncFunc(this.fetchCartContents));
     router.post("/add", wrapAsyncFunc(this.addToCart));
     router.post("/place-order", wrapAsyncFunc(this.placeOrder));
-    router.delete("/:userId/:itemId", wrapAsyncFunc(this.deleteCartItem));
+    router.delete("/:userId/:itemId", wrapAsyncFunc(this.deleteItem));
   }
 
   async fetchCartQuantity(req, res) {
@@ -50,9 +50,10 @@ export default class CartController {
 
   async deleteItem(req, res) {
     console.log(`CONTROLLER let's delete this`);
-    const { userHandle } = req.user;
-    const { item } = req.body.item_id;
 
+    const userHandle = req.params.userId;
+    const item = req.params.itemId;
+    console.log(`CONTROLLER userHandle: ${userHandle}, item: ${item}`);
     const results = await deleteCartItem(userHandle, item);
     res.send({ results });
   }

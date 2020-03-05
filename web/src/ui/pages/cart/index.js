@@ -29,7 +29,7 @@ class Cart extends Component {
             this.setState({ cart: response.data.cartContents[0] });
             console.log("cart state HERE ----->", this.state.cart);
             console.log("user state: ", this.state.user);
-            console.log("order state: ", this.state.orders);
+            console.log("INDEX SUCCESS order state: ", this.state.orderPlaced);
           })
           .catch(err => {
             console.log("Error fetching cart");
@@ -38,7 +38,7 @@ class Cart extends Component {
       .catch(err => {
         console.log("ERROR fetching ID token");
         console.log("user state: ", this.state.user);
-        console.log("order state: ", this.state.orders);
+        console.log("order state: ", this.state.orderPlaced);
       });
   }
 
@@ -52,7 +52,10 @@ class Cart extends Component {
 
   deleteCartItem = (event, userHandle, item) => {
     event.preventDefault();
-    axiosWrapper.del(`/cart/${userHandle}/${item}`, {}).then(response => {
+    console.log(
+      `INDEX.js -- deleteCartItem IS CALLED, path: /cart/${userHandle}/${item}`
+    );
+    axiosWrapper.del(`/cart/${userHandle}/${item}`).then(response => {
       console.log("ITEM DELETED", response);
     });
   };

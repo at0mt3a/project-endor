@@ -4,9 +4,11 @@ import compression from "compression";
 import cookieParser from "cookie-parser";
 import { NotFoundError } from "./utils/errors";
 import router from "./router";
+import cors from "cors";
 
 const app = express();
-
+app.use(cors());
+/*
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
@@ -21,7 +23,7 @@ app.use((req, res, next) => {
   res.header("Content-Type", "application/vnd.api+json");
   next();
 });
-
+*/
 app.set("trust proxy", true);
 
 app.use(compression());
@@ -45,6 +47,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.msg;
   res.locals.error = err;
   res.status(err.status);
+  console.log(`SERVER.js ERROR HANDLER -- ${res.locals.error}`);
   return res.send(err);
 
   // return res.sendStatus(err.status || 500)
