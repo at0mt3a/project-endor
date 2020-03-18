@@ -17,7 +17,7 @@ class Cart extends Component {
     };
   }
 
-  componentDidMount() {
+  getData() {
     axiosWrapper
       .get("/auth/jwt/login")
       .then(response => {
@@ -55,10 +55,20 @@ class Cart extends Component {
     console.log(
       `INDEX.js -- deleteCartItem IS CALLED, path: /cart/${userHandle}/${item}`
     );
-    axiosWrapper.del(`/cart/${userHandle}/${item}`).then(response => {
-      console.log("ITEM DELETED", response);
-    });
+    axiosWrapper
+      .del(`/cart/${userHandle}/${item}`)
+      .then(response => {
+        let deleteCount = response.data.results.rows[0].item_id;
+        console.log("ITEM DELETED", response);
+      })
+      .then(response => {
+        this.getData();
+      });
   };
+
+  componentDidMount() {
+    this.getData();
+  }
 
   render() {
     const { cart, orderPlaced } = this.state;
